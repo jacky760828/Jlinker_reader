@@ -1,0 +1,5 @@
+D:\jlink_test\TEST\Samples\CSharp\FindEmulators\obj\x64\Release\JLink_Find_Emulators_CSharp.csproj.AssemblyReference.cache
+D:\jlink_test\TEST\Samples\CSharp\FindEmulators\obj\x64\Release\JLink_Find_Emulators.FindEmulatorsGUI.resources
+D:\jlink_test\TEST\Samples\CSharp\FindEmulators\obj\x64\Release\JLink_Find_Emulators.Properties.Resources.resources
+D:\jlink_test\TEST\Samples\CSharp\FindEmulators\obj\x64\Release\JLink_Find_Emulators_CSharp.csproj.GenerateResource.cache
+D:\jlink_test\TEST\Samples\CSharp\FindEmulators\obj\x64\Release\JLink_Find_Emulators_CSharp.csproj.CoreCompileInputs.cache
