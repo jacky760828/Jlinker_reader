@@ -26,9 +26,9 @@ D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Find_Emulat
 D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Find_Emulators.Properties.Resources.resources
 D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Find_Emulators_CSharp.csproj.GenerateResource.cache
 D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Find_Emulators_CSharp.csproj.CoreCompileInputs.cache
+D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Fi.1B98115C.Up2Date
 D:\jlink_test\TEST2\JLink_Find_Devices.exe.config
 D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Find_Devices.exe
 D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Find_Devices.pdb
 D:\jlink_test\TEST2\JLink_Find_Devices.exe
 D:\jlink_test\TEST2\JLink_Find_Devices.pdb
-D:\jlink_test\TEST2\Samples\CSharp\FindEmulators\obj\x64\Debug\JLink_Fi.1B98115C.Up2Date

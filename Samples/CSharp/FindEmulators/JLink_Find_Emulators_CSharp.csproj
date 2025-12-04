@@ -85,6 +85,7 @@
     <Compile Include="..\Shared\JLinkSDK.cs">
       <Link>JLinkSDK.cs</Link>
     </Compile>
+    <Compile Include="Fan_data_read.cs" />
     <Compile Include="FindEmulators.cs" />
     <Compile Include="FindEmulatorsGUI.cs">
       <SubType>Form</SubType>

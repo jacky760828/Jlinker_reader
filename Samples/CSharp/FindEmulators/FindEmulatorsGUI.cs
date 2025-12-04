@@ -26,7 +26,7 @@ using System.Buffers.Binary; // signed long long
 
 namespace JLink_Find_Emulators
 {
-    
+   
     public enum ControlMode
     {
         Voltage = 1,
@@ -38,10 +38,13 @@ namespace JLink_Find_Emulators
 
     public partial class FindEmulatorsGUI : Form
     {
+        private Fan_data_read fan_read = new Fan_data_read();
+
         byte[] acOut;
         int divisor = 1920;
         byte[] acIn;
         string[] models = { "650W", "750W", "850W", "1000W", "550W" };
+        public enum FirmwareKind { Old, New, Unknown }
         uint start_pwm_12v;
         uint end_pwm_12v;
         public byte[] dsp_file_content = null;
@@ -55,6 +58,14 @@ namespace JLink_Find_Emulators
         public FindEmulatorsGUI()
         {
             InitializeComponent();
+        }
+
+
+        public FirmwareKind GetFirmware()
+        {
+            if (OLD_FONT.Checked) return FirmwareKind.Old;
+            if (NEW_FONT.Checked) return FirmwareKind.New;
+            return FirmwareKind.Unknown;
         }
 
         /*********************************************************************
@@ -421,11 +432,11 @@ namespace JLink_Find_Emulators
             //
             // Select HIF
             //
-
+            var fw=GetFirmware();
             //
             // Print information about connected probes/ programmers
             //
-            LogLine("Listing information about connected probes/ programmers...");
+            //LogLine("Listing information about connected probes/ programmers...");
             aConnectInfo = new JLINKARM_EMU_CONNECT_INFO[16];
             r = JLink.GetEmuList(JLink.HOSTIF_USB | JLink.HOSTIF_IP, aConnectInfo, 16);  // Get information about up to 16 probes/ programmers connected via USB or TCP/IP
             if (r < 0)
@@ -498,7 +509,7 @@ namespace JLink_Find_Emulators
             // string READ_addr=(0x3e04).ToString();
 
 
-            NumItems = 20;                                  // Number of items to read
+            NumItems = 25;                                  // Number of items to read
                                                             // Addr = Convert.ToUInt32(READ_addr, 16);      // Get Addr
             Addr = 0x3e14;
             Result = JLink.ReadMemEx(Addr, NumItems * 4, acData);
@@ -539,126 +550,231 @@ namespace JLink_Find_Emulators
                     {
 
 
-                        string fw_models = models[data2];
-                        label9.Text = fw_models;
+                        //string fw_models = models[data2];
+                       // label9.Text = fw_models;
                     }
 
                 }
+                if (fw == FirmwareKind.Old)
+                  {
+                     var (pwm_12, v1_12) = fan_read.ReadPair(acData[3], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.Voltage);
+                      V1_12V.Text = v1_12 + "V";
+                     PWM12V_START.Text = pwm_12 + "%";
+                  }else if (fw == FirmwareKind.New)
+                  {
+                    var decimalValue = fan_read.FromHexWord(acData[3]);
+                    V1_12V.Text = decimalValue+"V";
+                  }
 
-                
-              //byte[] temp_data = BitConverter.GetBytes(acData[3]);
+                if (fw == FirmwareKind.Old)
+                {
+                    var (v1_12_3, v1_12_2) = fan_read.ReadPair(acData[4], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
+                    V2_12V.Text = v1_12_2 + "V";
+                    V3_12V.Text = v1_12_3 + "V";
+                } else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[4]);
+                    V2_12V.Text = decimalValue + "V";
+                }
+                if (fw == FirmwareKind.Old)
+                {
+                    var (v1_5v, PWM12V_end) = fan_read.ReadPair(acData[5], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.PWM);
+                    V1_5V.Text = v1_5v + "V";
+                    PWM12V_END.Text = PWM12V_end + "%";
+                }else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[5]);
+                    V3_12V.Text = decimalValue + "V";
 
-                               
-                
-                string temp_data_str= acData[3].ToString();
-                double value1 = Voltage_read(acData[3], 1, ControlMode.PWM);
-                double value2 = Voltage_read(acData[3], 0, ControlMode.Voltage);
-                string result2 = value2.ToString();
-                string result1 = value1.ToString();
-                V1_12V.Text= result2 + 'V';
-                PWM12V_START.Text = result1 + '%';
+                }
+
+                if (fw == FirmwareKind.Old)
+                {
+                    var (nul, PWM5V_start) = fan_read.ReadPair(acData[6], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.PWM);
+                    PWM5V_START.Text = PWM5V_start + "%";
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var (PWM12V_start, PWM12V_end) = fan_read.ReadPair(acData[6], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
+                    PWM12V_START.Text = PWM12V_start + "%";
+                    PWM12V_END.Text = PWM12V_end + "%";
+
+                }
+
+                if (fw == FirmwareKind.Old)
+                {
+                    var (PWM5V_end, v2_5v) = fan_read.ReadPair(acData[7], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.Voltage);
+                    PWM5V_END.Text = PWM5V_end + "%";
+                    V2_5V.Text = v2_5v + "V";
+                }else if (fw == FirmwareKind.New)
+                {
+                    var (PWM12V_start, PWM12V_end) = fan_read.ReadPair(acData[7], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
+                    slope_timer.Text = PWM12V_start + "秒";
+                    buffer_time.Text = PWM12V_end + "秒";
+
+                }
+
+                if (fw == FirmwareKind.Old)
+                {
+
+                    var (PWM3V_start, v1_3v) = fan_read.ReadPair(acData[8], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.Voltage);
+                    PWM3V_START.Text = PWM3V_start + "%";
+                    V1_3V.Text = v1_3v + "V";
+                } else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[8]);
+                    V1_5V.Text = decimalValue + "V";
+
+                }
+
+                if (fw == FirmwareKind.Old)
+                {
+                    var (v2_3v, nul2) = fan_read.ReadPair(acData[9], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
+                    V2_3V.Text = v2_3v + "V";
+                } else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[9]);
+                    V2_5V.Text = decimalValue + "V";
+
+                }
+
+                if (fw == FirmwareKind.Old)
+                {
+                   var (nul3, PWM3V_end) = fan_read.ReadPair(acData[10], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.PWM);
+                   PWM3V_END.Text = PWM3V_end + "%";
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var (PWM5V_start, PWM5V_end) = fan_read.ReadPair(acData[10], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
+                    PWM5V_START.Text = PWM5V_start + "%";
+                    PWM5V_END.Text = PWM5V_end + "%";
+
+                }
+
+                if (fw == FirmwareKind.Old)
+                {
+                    var (V1_otp_LT, V2_otp_LT) = fan_read.ReadPair(acData[11], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
+                    V1_OTP_LT.Text = V1_otp_LT + "V";
+                    V2_OTP_LT.Text = V2_otp_LT + "V";
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[11]);
+                    V1_3V.Text = decimalValue + "V";
+
+                }
+                if (fw == FirmwareKind.Old)
+                {
+                    var (V1_otp, V3_otp_LT) = fan_read.ReadPair(acData[12], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
+                    V1_OTP.Text = V1_otp + "V";
+                    V3_OTP_LT.Text = V3_otp_LT + "V";
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[12]);
+                    V2_3V.Text = decimalValue + "V";
+
+                }
+
+                if (fw == FirmwareKind.Old)
+                {
+                    var (V2_otp, V3_otp) = fan_read.ReadPair(acData[13], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
+                    V2_OTP.Text = V2_otp + "V";
+                    V3_OTP.Text = V3_otp + "V";
+                }else if (fw == FirmwareKind.New)
+                {
+                    var (PWM3V_start, PWM3V_end) = fan_read.ReadPair(acData[13], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
+                    PWM3V_START.Text = PWM3V_start + "%";
+                    PWM3V_END.Text = PWM3V_end + "%";
 
 
-                //string temp_data_str = acData[4].ToString();
-                double value3 = Voltage_read(acData[4], 1, ControlMode.Voltage);
-                double value4 = Voltage_read(acData[4], 0, ControlMode.Voltage);
-                string result3 = value3.ToString();
-                string result4 = value4.ToString();
-                 V2_12V.Text = result4 + 'V';
-                 V3_12V.Text = result3 + 'V';
+                }
 
-                double value5 = Voltage_read(acData[5], 1, ControlMode.Voltage);
-                double value6 = Voltage_read(acData[5], 0, ControlMode.PWM);
-                string result5 = value5.ToString();
-                string result6 = value6.ToString();
-                V1_5V.Text = result5 + 'V';
-                PWM12V_END.Text = result6 + '%';
+                if (fw == FirmwareKind.Old)
+                {
+                    var (MAX_pwm, OTP_PWM_end) = fan_read.ReadPair(acData[14], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.PWM);
+                    end_pwm_12v = (uint)MAX_pwm;
+                    MAX_PWM.Text = MAX_pwm + "%";
+                    OTP_PWM_END.Text = OTP_PWM_end + "%";
+                }else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[14]);
+                    V1_OTP.Text = decimalValue + "V";
 
-                double value7 = Voltage_read(acData[6], 0, ControlMode.PWM);
-                string result7 = value7.ToString();               
-                PWM5V_START.Text = result7 + '%';
+                }
+                if (fw == FirmwareKind.Old)
+                {
+                    var (Slope_time, MIN_pwm) = fan_read.ReadPair(acData[15], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.PWM);
+                    start_pwm_12v = (uint)MIN_pwm;
+                    double percent = (double)(end_pwm_12v - start_pwm_12v) / 100.0;
+                    double buffer_timer_value = percent * Slope_time * 1920 / 1000.0;
+                    var temp_buffer_timer = (int)Math.Round(buffer_timer_value, MidpointRounding.AwayFromZero);
+                    slope_timer.Text = temp_buffer_timer + "秒";
+                    MIN_PWM.Text = MIN_pwm + "%";
+                } 
+                else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[15]);
+                    V2_OTP.Text = decimalValue + "V";
 
-                double value8 = Voltage_read(acData[7], 1, ControlMode.PWM);
-                double value9 = Voltage_read(acData[7], 0, ControlMode.Voltage);
-                string result8 = value8.ToString();
-                string result9 = value9.ToString();
-                PWM5V_END.Text = result8 + '%';
-                V2_5V.Text = result9 + 'V';
+                }
 
-                double value10 = Voltage_read(acData[8], 1, ControlMode.PWM);
-                double value11= Voltage_read(acData[8], 0, ControlMode.Voltage);
-                string resul10 = value10.ToString();
-                string result11 = value11.ToString();
-                PWM3V_START.Text = resul10+'%';
-                V1_3V.Text = result11+'V';
-
-                double value12 = Voltage_read(acData[9], 1, ControlMode.Voltage);
-                string result12 = value12.ToString();
-                V2_3V.Text = result12 + 'V';
-
-                double value13 = Voltage_read(acData[10], 0, ControlMode.PWM);
-                string result13 = value13.ToString();
-                PWM3V_END.Text = result13 + '%';
-
-                double value14 = Voltage_read(acData[11], 1, ControlMode.Voltage);
-                double value15 = Voltage_read(acData[11], 0, ControlMode.Voltage);
-                string resul14 = value14.ToString();
-                string result15 = value15.ToString();
-                V1_OTP_LT.Text = resul14 + 'V';
-                V2_OTP_LT.Text = result15 + 'V';
-
-                double value16 = Voltage_read(acData[12], 1, ControlMode.Voltage);
-                double value17 = Voltage_read(acData[12], 0, ControlMode.Voltage);
-                string resul16 = value16.ToString();
-                string result17 = value17.ToString();
-                V1_OTP.Text = resul16 + 'V';
-                V3_OTP_LT.Text = result17 + 'V';
-
-                double value18 = Voltage_read(acData[13], 1, ControlMode.Voltage);
-                double value19 = Voltage_read(acData[13], 0, ControlMode.Voltage);
-                string resul18 = value18.ToString();
-                string result19 = value19.ToString();
-                V2_OTP.Text = resul18 + 'V';
-                V3_OTP.Text = result19 + 'V';
-
-                double value20 = Voltage_read(acData[14], 1, ControlMode.PWM);
-                end_pwm_12v = (uint)value20;
-                double value21 = Voltage_read(acData[14], 0, ControlMode.PWM);
-                string resul20 = value20.ToString();
-                string result21 = value21.ToString();
-                MAX_PWM.Text = resul20 +'%';
-                OTP_PWM_END.Text = result21 +'%';
+                if (fw == FirmwareKind.Old)
+                {
+                    var (v1, v2) = fan_read.ReadPair(acData[17], Fan_data_read.ControlMode.OPP_Watter, Fan_data_read.ControlMode.OPP_Watter);
+                    double StopDelayTime = ((int)v1 << 16) | (int)v2;
+                    buffer_time.Text = (StopDelayTime / 1000).ToString() + '秒';
+                } else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[16]);
+                    V3_OTP.Text = decimalValue + "V";
 
 
-                double value22 = Voltage_read(acData[15], 1, ControlMode.Slope);
-                double value23 = Voltage_read(acData[15], 0, ControlMode.PWM);
-                start_pwm_12v= (uint)value23;
-                double percent = (double)(end_pwm_12v - start_pwm_12v) / 100.0;
-                double buffer_timer_value = percent * value22 * 1920 / 1000.0;
-                int temp_buffer_timer = (int)Math.Round(buffer_timer_value, MidpointRounding.AwayFromZero);
+                }
+                if (fw == FirmwareKind.Old)
+                {
+                    var (SR_otp, TA_otp) = fan_read.ReadPair(acData[18], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
+                    SR_OTP.Text = SR_otp + "V";
+                    TA_OTP.Text = TA_otp + "V";
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var (OTP_PWM_start, OTP_PWM_end) = fan_read.ReadPair(acData[17], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
+                    OTP_PWM_START.Text = OTP_PWM_start + "%";
+                    OTP_PWM_END.Text = OTP_PWM_end + "%";
+                }
+                if (fw == FirmwareKind.Old)
+                {
+                    var (w1, w2) = fan_read.ReadPair(acData[19], Fan_data_read.ControlMode.OPP_Watter, Fan_data_read.ControlMode.OPP_Watter);
+                    double Watter = ((int)w1 << 16) | (int)w2;
+                    opp.Text = (Watter).ToString() + 'W';
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[18]);
+                    SR_OTP.Text = decimalValue + "V";
 
-                string resul22 = temp_buffer_timer.ToString();
-                string result23 = value23.ToString();
-                slope_timer.Text = resul22 + '秒';
-                MIN_PWM.Text = result23 + '%';
+                }
 
-                double value24 = Voltage_read(acData[17], 1, ControlMode.OPP_Watter);
-                double value25 = Voltage_read(acData[17], 0, ControlMode.OPP_Watter);
-                double StopDelayTime = ((int)value24 << 16) | (int)value25;
-                buffer_time.Text = (StopDelayTime/ 1000).ToString() + '秒';
+                if (fw == FirmwareKind.Old)
+                {
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var decimalValue = fan_read.FromHexWord(acData[19]);
+                    TA_OTP.Text = decimalValue + "V";
 
-                double value26 = Voltage_read(acData[18], 1, ControlMode.Voltage);
-                double value27 = Voltage_read(acData[18], 0, ControlMode.Voltage);
-                string resul26 = value26.ToString();
-                string result27 = value27.ToString();
-                SR_OTP.Text = resul26 + 'V';
-                TA_OTP.Text = result27 + 'V';
+                }
+                if (fw == FirmwareKind.Old)
+                {
+                }
+                else if (fw == FirmwareKind.New)
+                {
+                    var (OPP_max, OTP_PWM_end) = fan_read.ReadPair(acData[20], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
+                   OPP_max = OPP_max/100;
+                    opp.Text = OPP_max+ "倍";
 
-                double value28 = Voltage_read(acData[19], 1, ControlMode.OPP_Watter);
-                double value29 = Voltage_read(acData[19], 0, ControlMode.OPP_Watter);
-                double Watter = ((int)value28 << 16) | (int)value29;
-                opp.Text = (Watter).ToString() + 'W';
-
+                }
             }
 
         //NumItems=8;                                  // Number of items to read
@@ -752,21 +868,21 @@ namespace JLink_Find_Emulators
 
         }
 
-        static float FromHexWord(string hexWord)
-        {
-            if (hexWord.Length != 8)
-                throw new ArgumentException("Hex word must be exactly 8 characters.");
+        //static float FromHexWord(string hexWord)
+        //{
+        //    if (hexWord.Length != 8)
+        //        throw new ArgumentException("Hex word must be exactly 8 characters.");
 
-            uint u = Convert.ToUInt32(hexWord, 16);
+        //    uint u = Convert.ToUInt32(hexWord, 16);
 
-            // 換 endian（MCU 給的是小端，要轉成 IEEE754 順序）
-            u = BinaryPrimitives.ReverseEndianness(u);
+        //    // 換 endian（MCU 給的是小端，要轉成 IEEE754 順序）
+        //    u = BinaryPrimitives.ReverseEndianness(u);
 
-            // 使用 BitConverter 轉成 float（所有 .NET 都支援）
-            byte[] bytes = BitConverter.GetBytes(u);
+        //    // 使用 BitConverter 轉成 float（所有 .NET 都支援）
+        //    byte[] bytes = BitConverter.GetBytes(u);
 
-            return BitConverter.ToSingle(bytes, 0);
-        }
+        //    return BitConverter.ToSingle(bytes, 0);
+        //}
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -782,5 +898,13 @@ namespace JLink_Find_Emulators
         {
 
         }
+
+        private void NEW_FONT_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
+
+
+
 }

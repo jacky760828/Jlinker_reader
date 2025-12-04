@@ -52,6 +52,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buffer_time = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.slope_timer = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.MIN_PWM = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.MAX_PWM = new System.Windows.Forms.TextBox();
             this.PWM12V_END = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.V3_12V = new System.Windows.Forms.TextBox();
@@ -81,37 +89,31 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.TA_OTP = new System.Windows.Forms.TextBox();
+            this.SR_OTP = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.SR = new System.Windows.Forms.Label();
             this.OTP_PWM_END = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.V3_OTP = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.V2_OTP_LT = new System.Windows.Forms.TextBox();
+            this.V2_OTP = new System.Windows.Forms.TextBox();
+            this.V1_OTP = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.V1_OTP_LT = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.V1_OTP = new System.Windows.Forms.TextBox();
-            this.V2_OTP = new System.Windows.Forms.TextBox();
+            this.opp = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.V2_OTP_LT = new System.Windows.Forms.TextBox();
+            this.V1_OTP_LT = new System.Windows.Forms.TextBox();
+            this.NEW_FONT = new System.Windows.Forms.CheckBox();
+            this.OLD_FONT = new System.Windows.Forms.CheckBox();
             this.V3_OTP_LT = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.MAX_PWM = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.MIN_PWM = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.slope_timer = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.buffer_time = new System.Windows.Forms.TextBox();
-            this.SR = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.SR_OTP = new System.Windows.Forms.TextBox();
-            this.TA_OTP = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.opp = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.OTP_PWM_START = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -374,6 +376,70 @@
             this.tabPage1.Text = "12V感測電流和PWM";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // buffer_time
+            // 
+            this.buffer_time.Location = new System.Drawing.Point(576, 240);
+            this.buffer_time.Name = "buffer_time";
+            this.buffer_time.Size = new System.Drawing.Size(100, 29);
+            this.buffer_time.TabIndex = 17;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(448, 248);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(121, 18);
+            this.label33.TabIndex = 16;
+            this.label33.Text = "風扇緩衝時間:";
+            // 
+            // slope_timer
+            // 
+            this.slope_timer.Location = new System.Drawing.Point(575, 205);
+            this.slope_timer.Name = "slope_timer";
+            this.slope_timer.Size = new System.Drawing.Size(100, 29);
+            this.slope_timer.TabIndex = 15;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(27, 240);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(85, 18);
+            this.label32.TabIndex = 14;
+            this.label32.Text = "最低轉數:";
+            // 
+            // MIN_PWM
+            // 
+            this.MIN_PWM.Location = new System.Drawing.Point(127, 237);
+            this.MIN_PWM.Name = "MIN_PWM";
+            this.MIN_PWM.Size = new System.Drawing.Size(100, 29);
+            this.MIN_PWM.TabIndex = 13;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(484, 216);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(85, 18);
+            this.label31.TabIndex = 12;
+            this.label31.Text = "斜率時間:";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(27, 205);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(85, 18);
+            this.label25.TabIndex = 11;
+            this.label25.Text = "最大轉數:";
+            // 
+            // MAX_PWM
+            // 
+            this.MAX_PWM.Location = new System.Drawing.Point(127, 202);
+            this.MAX_PWM.Name = "MAX_PWM";
+            this.MAX_PWM.Size = new System.Drawing.Size(100, 29);
+            this.MAX_PWM.TabIndex = 10;
+            // 
             // PWM12V_END
             // 
             this.PWM12V_END.Location = new System.Drawing.Point(579, 136);
@@ -623,6 +689,8 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.Moccasin;
+            this.tabPage4.Controls.Add(this.OTP_PWM_START);
+            this.tabPage4.Controls.Add(this.label36);
             this.tabPage4.Controls.Add(this.TA_OTP);
             this.tabPage4.Controls.Add(this.SR_OTP);
             this.tabPage4.Controls.Add(this.label34);
@@ -642,6 +710,38 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "OTP和風扇PWM";
             // 
+            // TA_OTP
+            // 
+            this.TA_OTP.Location = new System.Drawing.Point(590, 231);
+            this.TA_OTP.Name = "TA_OTP";
+            this.TA_OTP.Size = new System.Drawing.Size(100, 29);
+            this.TA_OTP.TabIndex = 24;
+            // 
+            // SR_OTP
+            // 
+            this.SR_OTP.Location = new System.Drawing.Point(176, 231);
+            this.SR_OTP.Name = "SR_OTP";
+            this.SR_OTP.Size = new System.Drawing.Size(100, 29);
+            this.SR_OTP.TabIndex = 23;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(474, 234);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(110, 18);
+            this.label34.TabIndex = 22;
+            this.label34.Text = "TA_OTP電壓:";
+            // 
+            // SR
+            // 
+            this.SR.AutoSize = true;
+            this.SR.Location = new System.Drawing.Point(57, 234);
+            this.SR.Name = "SR";
+            this.SR.Size = new System.Drawing.Size(108, 18);
+            this.SR.TabIndex = 21;
+            this.SR.Text = "SR_OTP電壓:";
+            // 
             // OTP_PWM_END
             // 
             this.OTP_PWM_END.Location = new System.Drawing.Point(613, 106);
@@ -652,7 +752,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(467, 109);
+            this.label23.Location = new System.Drawing.Point(467, 52);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(125, 18);
             this.label23.TabIndex = 18;
@@ -674,12 +774,19 @@
             this.label24.TabIndex = 16;
             this.label24.Text = "12V_MCU電流檢知電壓第三點:";
             // 
-            // V2_OTP_LT
+            // V2_OTP
             // 
-            this.V2_OTP_LT.Location = new System.Drawing.Point(1068, 492);
-            this.V2_OTP_LT.Name = "V2_OTP_LT";
-            this.V2_OTP_LT.Size = new System.Drawing.Size(100, 29);
-            this.V2_OTP_LT.TabIndex = 13;
+            this.V2_OTP.Location = new System.Drawing.Point(314, 106);
+            this.V2_OTP.Name = "V2_OTP";
+            this.V2_OTP.Size = new System.Drawing.Size(100, 29);
+            this.V2_OTP.TabIndex = 20;
+            // 
+            // V1_OTP
+            // 
+            this.V1_OTP.Location = new System.Drawing.Point(315, 49);
+            this.V1_OTP.Name = "V1_OTP";
+            this.V1_OTP.Size = new System.Drawing.Size(100, 29);
+            this.V1_OTP.TabIndex = 20;
             // 
             // label26
             // 
@@ -689,13 +796,6 @@
             this.label26.Size = new System.Drawing.Size(249, 18);
             this.label26.TabIndex = 12;
             this.label26.Text = "12V_MCU電流檢知電壓第二點:";
-            // 
-            // V1_OTP_LT
-            // 
-            this.V1_OTP_LT.Location = new System.Drawing.Point(1068, 432);
-            this.V1_OTP_LT.Name = "V1_OTP_LT";
-            this.V1_OTP_LT.Size = new System.Drawing.Size(100, 29);
-            this.V1_OTP_LT.TabIndex = 11;
             // 
             // label27
             // 
@@ -718,39 +818,56 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "OPP觸發點";
             // 
-            // checkBox1
+            // opp
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(604, 239);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(109, 22);
-            this.checkBox1.TabIndex = 25;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.opp.Location = new System.Drawing.Point(272, 75);
+            this.opp.Name = "opp";
+            this.opp.Size = new System.Drawing.Size(100, 29);
+            this.opp.TabIndex = 21;
             // 
-            // checkBox2
+            // label35
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(604, 275);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(109, 22);
-            this.checkBox2.TabIndex = 26;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(193, 78);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(73, 18);
+            this.label35.TabIndex = 0;
+            this.label35.Text = "opp瓦數:";
             // 
-            // V1_OTP
+            // V2_OTP_LT
             // 
-            this.V1_OTP.Location = new System.Drawing.Point(315, 49);
-            this.V1_OTP.Name = "V1_OTP";
-            this.V1_OTP.Size = new System.Drawing.Size(100, 29);
-            this.V1_OTP.TabIndex = 20;
+            this.V2_OTP_LT.Location = new System.Drawing.Point(1068, 492);
+            this.V2_OTP_LT.Name = "V2_OTP_LT";
+            this.V2_OTP_LT.Size = new System.Drawing.Size(100, 29);
+            this.V2_OTP_LT.TabIndex = 13;
             // 
-            // V2_OTP
+            // V1_OTP_LT
             // 
-            this.V2_OTP.Location = new System.Drawing.Point(314, 106);
-            this.V2_OTP.Name = "V2_OTP";
-            this.V2_OTP.Size = new System.Drawing.Size(100, 29);
-            this.V2_OTP.TabIndex = 20;
+            this.V1_OTP_LT.Location = new System.Drawing.Point(1068, 432);
+            this.V1_OTP_LT.Name = "V1_OTP_LT";
+            this.V1_OTP_LT.Size = new System.Drawing.Size(100, 29);
+            this.V1_OTP_LT.TabIndex = 11;
+            // 
+            // NEW_FONT
+            // 
+            this.NEW_FONT.AutoSize = true;
+            this.NEW_FONT.Location = new System.Drawing.Point(579, 305);
+            this.NEW_FONT.Name = "NEW_FONT";
+            this.NEW_FONT.Size = new System.Drawing.Size(88, 22);
+            this.NEW_FONT.TabIndex = 25;
+            this.NEW_FONT.Text = "新格式";
+            this.NEW_FONT.UseVisualStyleBackColor = true;
+            this.NEW_FONT.CheckedChanged += new System.EventHandler(this.NEW_FONT_CheckedChanged);
+            // 
+            // OLD_FONT
+            // 
+            this.OLD_FONT.AutoSize = true;
+            this.OLD_FONT.Location = new System.Drawing.Point(687, 305);
+            this.OLD_FONT.Name = "OLD_FONT";
+            this.OLD_FONT.Size = new System.Drawing.Size(88, 22);
+            this.OLD_FONT.TabIndex = 26;
+            this.OLD_FONT.Text = "舊格式";
+            this.OLD_FONT.UseVisualStyleBackColor = true;
             // 
             // V3_OTP_LT
             // 
@@ -786,117 +903,21 @@
             this.label30.TabIndex = 28;
             this.label30.Text = "低溫判斷點V3:";
             // 
-            // MAX_PWM
+            // label36
             // 
-            this.MAX_PWM.Location = new System.Drawing.Point(127, 202);
-            this.MAX_PWM.Name = "MAX_PWM";
-            this.MAX_PWM.Size = new System.Drawing.Size(100, 29);
-            this.MAX_PWM.TabIndex = 10;
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(467, 109);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(125, 18);
+            this.label36.TabIndex = 25;
+            this.label36.Text = "PWM輸出結束:";
             // 
-            // label25
+            // OTP_PWM_START
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(27, 205);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(85, 18);
-            this.label25.TabIndex = 11;
-            this.label25.Text = "最大轉數:";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(484, 216);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(85, 18);
-            this.label31.TabIndex = 12;
-            this.label31.Text = "斜率時間:";
-            // 
-            // MIN_PWM
-            // 
-            this.MIN_PWM.Location = new System.Drawing.Point(127, 237);
-            this.MIN_PWM.Name = "MIN_PWM";
-            this.MIN_PWM.Size = new System.Drawing.Size(100, 29);
-            this.MIN_PWM.TabIndex = 13;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(27, 240);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(85, 18);
-            this.label32.TabIndex = 14;
-            this.label32.Text = "最低轉數:";
-            // 
-            // slope_timer
-            // 
-            this.slope_timer.Location = new System.Drawing.Point(575, 205);
-            this.slope_timer.Name = "slope_timer";
-            this.slope_timer.Size = new System.Drawing.Size(100, 29);
-            this.slope_timer.TabIndex = 15;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(448, 248);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(121, 18);
-            this.label33.TabIndex = 16;
-            this.label33.Text = "風扇緩衝時間:";
-            // 
-            // buffer_time
-            // 
-            this.buffer_time.Location = new System.Drawing.Point(576, 240);
-            this.buffer_time.Name = "buffer_time";
-            this.buffer_time.Size = new System.Drawing.Size(100, 29);
-            this.buffer_time.TabIndex = 17;
-            // 
-            // SR
-            // 
-            this.SR.AutoSize = true;
-            this.SR.Location = new System.Drawing.Point(57, 234);
-            this.SR.Name = "SR";
-            this.SR.Size = new System.Drawing.Size(108, 18);
-            this.SR.TabIndex = 21;
-            this.SR.Text = "SR_OTP電壓:";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(474, 234);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(110, 18);
-            this.label34.TabIndex = 22;
-            this.label34.Text = "TA_OTP電壓:";
-            // 
-            // SR_OTP
-            // 
-            this.SR_OTP.Location = new System.Drawing.Point(176, 231);
-            this.SR_OTP.Name = "SR_OTP";
-            this.SR_OTP.Size = new System.Drawing.Size(100, 29);
-            this.SR_OTP.TabIndex = 23;
-            // 
-            // TA_OTP
-            // 
-            this.TA_OTP.Location = new System.Drawing.Point(590, 231);
-            this.TA_OTP.Name = "TA_OTP";
-            this.TA_OTP.Size = new System.Drawing.Size(100, 29);
-            this.TA_OTP.TabIndex = 24;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(193, 78);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(73, 18);
-            this.label35.TabIndex = 0;
-            this.label35.Text = "opp瓦數:";
-            // 
-            // opp
-            // 
-            this.opp.Location = new System.Drawing.Point(272, 75);
-            this.opp.Name = "opp";
-            this.opp.Size = new System.Drawing.Size(100, 29);
-            this.opp.TabIndex = 21;
+            this.OTP_PWM_START.Location = new System.Drawing.Point(613, 49);
+            this.OTP_PWM_START.Name = "OTP_PWM_START";
+            this.OTP_PWM_START.Size = new System.Drawing.Size(100, 29);
+            this.OTP_PWM_START.TabIndex = 26;
             // 
             // FindEmulatorsGUI
             // 
@@ -908,8 +929,8 @@
             this.Controls.Add(this.label28);
             this.Controls.Add(this.V3_OTP_LT);
             this.Controls.Add(this.V2_OTP_LT);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.OLD_FONT);
+            this.Controls.Add(this.NEW_FONT);
             this.Controls.Add(this.V1_OTP_LT);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label9);
@@ -980,8 +1001,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox NEW_FONT;
+        private System.Windows.Forms.CheckBox OLD_FONT;
         private System.Windows.Forms.TextBox V1_12V;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox V2_12V;
@@ -1036,6 +1057,8 @@
         private System.Windows.Forms.Label SR;
         private System.Windows.Forms.TextBox opp;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox OTP_PWM_START;
+        private System.Windows.Forms.Label label36;
     }
 }
 
