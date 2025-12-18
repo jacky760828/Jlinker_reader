@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,35 +9,45 @@ using System.Threading.Tasks;
 
 namespace JLink_Find_Emulators
 {
-    internal class Fan_data_read
+    //  internal class Fan_data_read
+    internal class FanDataParser
     {
+        public uint[] RawData;
+
         private readonly int divisor = 1920;
-        
-        public enum ControlMode
+
+           public enum ControlMode
         {
+           // None,
             Voltage,
             PWM,
             Slope,
             BufferTime,
-            OPP_Watter
+            OPP_Watter,
+            NEW_F_PWM,
+            OPP_NEW,
+            None
+        }
+        public FanDataParser(uint[] acData)
+        {
+            RawData = acData;
         }
 
-        public (double high, double low) ReadPair(uint word, ControlMode highMode, ControlMode lowMode)
+        //public (double high, double low) ReadPair(uint value, ControlMode highMode, ControlMode lowMode)
+        //{
+        //    ushort high = (ushort)(value >> 16);
+        //    ushort low = (ushort)(value & 0xFFFF);
+
+        //    return (Decode(high, highMode), Decode(low, lowMode));
+        //}
+
+        public double Decode(uint raw, ControlMode mode)
         {
-
-            double highValue = VoltageRead(word, 1, highMode);
-            double lowValue = VoltageRead(word, 0, lowMode);
-            return (highValue, lowValue);
-
-
-        }
-
-        public double VoltageRead(uint raw, int shift, ControlMode mode)
-        {
-            if (shift == 1)
-                raw >>= 16;
-            else
-                raw &= 0xFFFF;
+          
+            //if (shift == 1)
+            //    raw >>= 16;
+            //else
+            //    raw &= 0xFFFF;
 
             switch (mode)
             {
@@ -52,11 +63,48 @@ namespace JLink_Find_Emulators
 
                 case ControlMode.BufferTime:
                     return raw / 1000.0;
+                case ControlMode.NEW_F_PWM:
+                case ControlMode.OPP_NEW:
+                    return raw;
+
 
                 default:
                     return 0;
             }
+
         }
+     
+
+
+
+        //    // ==== 套用 UI ====
+        //    //fandataGridView.DataSource = table;
+        //}
+        private string Format(double value, ControlMode mode)
+        {
+            switch (mode)
+            {
+                case ControlMode.Voltage:
+                    return value.ToString("0.###") + " V";
+
+                case ControlMode.PWM:
+                    return value.ToString("0.#") + " %";
+
+                case ControlMode.BufferTime:
+                    return value.ToString("0.#") + " s";
+
+                case ControlMode.OPP_Watter:
+                    return value.ToString();
+                case ControlMode.OPP_NEW: 
+                    return value.ToString("0.#")+"倍";
+
+                default:
+                    return "-";
+            }
+        }
+
+
+  
 
 
         public float FromHexWord(uint hexWord)

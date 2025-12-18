@@ -19,26 +19,28 @@ using I8 = System.SByte; // signed char
 using I16 = System.Int16; // signed short
 using I32 = System.Int32; // signed int
 using I64 = System.Int64;
-using System.Buffers.Binary; // signed long long
+using System.Buffers.Binary;
+using static JLink_Find_Emulators.FanDataParser; // signed long long
 
 
 
 
 namespace JLink_Find_Emulators
 {
-   
-    public enum ControlMode
-    {
-        Voltage = 1,
-        PWM = 2,
-        Slope = 3,
-        BufferTime = 4,
-        OPP_Watter = 5
-    }
+
+    //public enum ControlMode
+    //{
+    //    Voltage = 1,
+    //    PWM = 2,
+    //    Slope = 3,
+    //    BufferTime = 4,
+    //    OPP_Watter = 5
+    //}
 
     public partial class FindEmulatorsGUI : Form
     {
-        private Fan_data_read fan_read = new Fan_data_read();
+
+        // private Fan_data_read fan_read = new Fan_data_read();
 
         byte[] acOut;
         int divisor = 1920;
@@ -406,8 +408,87 @@ namespace JLink_Find_Emulators
             JLink.Close();
             LogLine("Disconnected from target and J-Link.");
         }
+        private DataTable BuildParamTable()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Index", typeof(int));
+            table.Columns.Add("描述", typeof(string));
+            table.Columns.Add("電壓", typeof(string));
+            table.Columns.Add("PWM", typeof(string));
+            table.Columns.Add("時間", typeof(string));
+            table.Columns.Add("功率", typeof(string));
+            return table;
+        }
+
+        private string FormatDisplay(double value, FanDataParser.ControlMode mode)
+        {
+            switch (mode)
+            {
+                case FanDataParser.ControlMode.Voltage:
+                    return value.ToString("0.###") + " V";
+
+                case FanDataParser.ControlMode.PWM:
+                    return value.ToString("0.#") + " %";
+
+                case FanDataParser.ControlMode.BufferTime:
+                    return value.ToString("0.#") + " 秒";
+
+                case FanDataParser.ControlMode.OPP_Watter:
+                    return value.ToString()+" W";
+                case FanDataParser.ControlMode.Slope:
+                    return value.ToString("0.#") + " 秒";
+                case ControlMode.OPP_NEW:
+                    return value.ToString("0.#") + "倍";
+                default:
+                    return "-";
+            }
+        }
 
 
+
+        private void ShowParametersInGrid(FanDataParser parser)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("Index", typeof(int));
+            table.Columns.Add("Description", typeof(string));
+            table.Columns.Add("電壓", typeof(string));
+            table.Columns.Add("PWM", typeof(string));
+            table.Columns.Add("秒", typeof(string));
+            table.Columns.Add("輸出功率", typeof(string));
+            var fw = GetFirmware();
+            if(fw == FirmwareKind.Old)
+            {
+
+
+                Add_NEW_FONT_FanRow(table, parser,3,"12V負載第一點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser,4,"12V負載第二點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser,5,"12V負載第三點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 6, "12V開始Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser,6,"12V結束Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 7, "12V風扇設定時間", ControlMode.Voltage, ControlMode.PWM, ControlMode.Slope, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 7, "風扇緩衝時間", ControlMode.Voltage, ControlMode.PWM, ControlMode.Slope, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 8, "5V負載第一點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 9, "5V負載第二點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 10, "5V開始Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 10, "5V結束Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 11, "3V負載第一點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 12, "3V負載第二點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 13, "3V開始Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 13, "3V結束Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 14, "OTP負載第一點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 15, "OTP負載第二點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 16, "OTP負載第三點", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 17, "OTP開始Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 17, "OTP結束Duty", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 18, "MOS_OTP", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 19, "TA_OTP", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.None);
+                Add_NEW_FONT_FanRow(table, parser, 20, "OPP", ControlMode.Voltage, ControlMode.PWM, ControlMode.None, ControlMode.OPP_NEW);
+
+            }
+
+            // 顯示到你的 DataGridView
+            fandataGridView.DataSource = table;
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             JLINKARM_EMU_CONNECT_INFO[] aConnectInfo;
@@ -432,7 +513,7 @@ namespace JLink_Find_Emulators
             //
             // Select HIF
             //
-            var fw=GetFirmware();
+           
             //
             // Print information about connected probes/ programmers
             //
@@ -555,226 +636,10 @@ namespace JLink_Find_Emulators
                     }
 
                 }
-                if (fw == FirmwareKind.Old)
-                  {
-                     var (pwm_12, v1_12) = fan_read.ReadPair(acData[3], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.Voltage);
-                      V1_12V.Text = v1_12 + "V";
-                     PWM12V_START.Text = pwm_12 + "%";
-                  }else if (fw == FirmwareKind.New)
-                  {
-                    var decimalValue = fan_read.FromHexWord(acData[3]);
-                    V1_12V.Text = decimalValue+"V";
-                  }
 
-                if (fw == FirmwareKind.Old)
-                {
-                    var (v1_12_3, v1_12_2) = fan_read.ReadPair(acData[4], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
-                    V2_12V.Text = v1_12_2 + "V";
-                    V3_12V.Text = v1_12_3 + "V";
-                } else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[4]);
-                    V2_12V.Text = decimalValue + "V";
-                }
-                if (fw == FirmwareKind.Old)
-                {
-                    var (v1_5v, PWM12V_end) = fan_read.ReadPair(acData[5], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.PWM);
-                    V1_5V.Text = v1_5v + "V";
-                    PWM12V_END.Text = PWM12V_end + "%";
-                }else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[5]);
-                    V3_12V.Text = decimalValue + "V";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                    var (nul, PWM5V_start) = fan_read.ReadPair(acData[6], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.PWM);
-                    PWM5V_START.Text = PWM5V_start + "%";
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var (PWM12V_start, PWM12V_end) = fan_read.ReadPair(acData[6], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
-                    PWM12V_START.Text = PWM12V_start + "%";
-                    PWM12V_END.Text = PWM12V_end + "%";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                    var (PWM5V_end, v2_5v) = fan_read.ReadPair(acData[7], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.Voltage);
-                    PWM5V_END.Text = PWM5V_end + "%";
-                    V2_5V.Text = v2_5v + "V";
-                }else if (fw == FirmwareKind.New)
-                {
-                    var (PWM12V_start, PWM12V_end) = fan_read.ReadPair(acData[7], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
-                    slope_timer.Text = PWM12V_start + "秒";
-                    buffer_time.Text = PWM12V_end + "秒";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-
-                    var (PWM3V_start, v1_3v) = fan_read.ReadPair(acData[8], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.Voltage);
-                    PWM3V_START.Text = PWM3V_start + "%";
-                    V1_3V.Text = v1_3v + "V";
-                } else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[8]);
-                    V1_5V.Text = decimalValue + "V";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                    var (v2_3v, nul2) = fan_read.ReadPair(acData[9], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
-                    V2_3V.Text = v2_3v + "V";
-                } else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[9]);
-                    V2_5V.Text = decimalValue + "V";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                   var (nul3, PWM3V_end) = fan_read.ReadPair(acData[10], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.PWM);
-                   PWM3V_END.Text = PWM3V_end + "%";
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var (PWM5V_start, PWM5V_end) = fan_read.ReadPair(acData[10], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
-                    PWM5V_START.Text = PWM5V_start + "%";
-                    PWM5V_END.Text = PWM5V_end + "%";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                    var (V1_otp_LT, V2_otp_LT) = fan_read.ReadPair(acData[11], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
-                    V1_OTP_LT.Text = V1_otp_LT + "V";
-                    V2_OTP_LT.Text = V2_otp_LT + "V";
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[11]);
-                    V1_3V.Text = decimalValue + "V";
-
-                }
-                if (fw == FirmwareKind.Old)
-                {
-                    var (V1_otp, V3_otp_LT) = fan_read.ReadPair(acData[12], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
-                    V1_OTP.Text = V1_otp + "V";
-                    V3_OTP_LT.Text = V3_otp_LT + "V";
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[12]);
-                    V2_3V.Text = decimalValue + "V";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                    var (V2_otp, V3_otp) = fan_read.ReadPair(acData[13], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
-                    V2_OTP.Text = V2_otp + "V";
-                    V3_OTP.Text = V3_otp + "V";
-                }else if (fw == FirmwareKind.New)
-                {
-                    var (PWM3V_start, PWM3V_end) = fan_read.ReadPair(acData[13], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
-                    PWM3V_START.Text = PWM3V_start + "%";
-                    PWM3V_END.Text = PWM3V_end + "%";
-
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                    var (MAX_pwm, OTP_PWM_end) = fan_read.ReadPair(acData[14], Fan_data_read.ControlMode.PWM, Fan_data_read.ControlMode.PWM);
-                    end_pwm_12v = (uint)MAX_pwm;
-                    MAX_PWM.Text = MAX_pwm + "%";
-                    OTP_PWM_END.Text = OTP_PWM_end + "%";
-                }else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[14]);
-                    V1_OTP.Text = decimalValue + "V";
-
-                }
-                if (fw == FirmwareKind.Old)
-                {
-                    var (Slope_time, MIN_pwm) = fan_read.ReadPair(acData[15], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.PWM);
-                    start_pwm_12v = (uint)MIN_pwm;
-                    double percent = (double)(end_pwm_12v - start_pwm_12v) / 100.0;
-                    double buffer_timer_value = percent * Slope_time * 1920 / 1000.0;
-                    var temp_buffer_timer = (int)Math.Round(buffer_timer_value, MidpointRounding.AwayFromZero);
-                    slope_timer.Text = temp_buffer_timer + "秒";
-                    MIN_PWM.Text = MIN_pwm + "%";
-                } 
-                else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[15]);
-                    V2_OTP.Text = decimalValue + "V";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                    var (v1, v2) = fan_read.ReadPair(acData[17], Fan_data_read.ControlMode.OPP_Watter, Fan_data_read.ControlMode.OPP_Watter);
-                    double StopDelayTime = ((int)v1 << 16) | (int)v2;
-                    buffer_time.Text = (StopDelayTime / 1000).ToString() + '秒';
-                } else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[16]);
-                    V3_OTP.Text = decimalValue + "V";
-
-
-                }
-                if (fw == FirmwareKind.Old)
-                {
-                    var (SR_otp, TA_otp) = fan_read.ReadPair(acData[18], Fan_data_read.ControlMode.Voltage, Fan_data_read.ControlMode.Voltage);
-                    SR_OTP.Text = SR_otp + "V";
-                    TA_OTP.Text = TA_otp + "V";
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var (OTP_PWM_start, OTP_PWM_end) = fan_read.ReadPair(acData[17], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
-                    OTP_PWM_START.Text = OTP_PWM_start + "%";
-                    OTP_PWM_END.Text = OTP_PWM_end + "%";
-                }
-                if (fw == FirmwareKind.Old)
-                {
-                    var (w1, w2) = fan_read.ReadPair(acData[19], Fan_data_read.ControlMode.OPP_Watter, Fan_data_read.ControlMode.OPP_Watter);
-                    double Watter = ((int)w1 << 16) | (int)w2;
-                    opp.Text = (Watter).ToString() + 'W';
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[18]);
-                    SR_OTP.Text = decimalValue + "V";
-
-                }
-
-                if (fw == FirmwareKind.Old)
-                {
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var decimalValue = fan_read.FromHexWord(acData[19]);
-                    TA_OTP.Text = decimalValue + "V";
-
-                }
-                if (fw == FirmwareKind.Old)
-                {
-                }
-                else if (fw == FirmwareKind.New)
-                {
-                    var (OPP_max, OTP_PWM_end) = fan_read.ReadPair(acData[20], Fan_data_read.ControlMode.Slope, Fan_data_read.ControlMode.Slope);
-                   OPP_max = OPP_max/100;
-                    opp.Text = OPP_max+ "倍";
-
-                }
+                var parser = new FanDataParser(acData);
+                ShowParametersInGrid(parser);
+               
             }
 
         //NumItems=8;                                  // Number of items to read
@@ -786,6 +651,353 @@ namespace JLink_Find_Emulators
         Close:
             JLink.Close();
             LogLine("Disconnected from target and J-Link.");
+        }
+
+
+    private void Add_NEW_FONT_FanRow(
+    DataTable table,
+    FanDataParser parser,
+    int index,
+    string desc,
+    ControlMode voltageMode,
+    ControlMode pwmMode,
+    ControlMode timeMode,
+    ControlMode wattMode)
+        {
+            uint raw = parser.RawData[index];
+
+            ushort high = (ushort)(raw >> 16);
+            ushort low = (ushort)(raw & 0xFFFF);
+            switch (index)
+            {
+                case 3:
+                    var v1_12 = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v1_12, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+
+                case 4:
+                    var v2_12 = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v2_12, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 5:
+                    var v3_12 = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v3_12, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                 case 6:
+                    {
+                        if (desc == "12V結束Duty")
+                        {
+                            string V12_end_duty = FormatDisplay(parser.Decode(low, ControlMode.NEW_F_PWM), pwmMode);
+                            table.Rows.Add(index, desc, "NA",V12_end_duty, "NA", "NA");
+                        }
+                        else
+                        {
+                            string V12_start_duty = FormatDisplay(parser.Decode(high, ControlMode.NEW_F_PWM),pwmMode);
+                            table.Rows.Add(index, desc, "NA",V12_start_duty, "NA", "NA");
+                        }
+
+                    }
+                    break;
+                case 7:
+                    {
+                        if (desc == "12V風扇設定時間")
+                        {
+                            string V12_set_time = FormatDisplay(parser.Decode(high, ControlMode.Slope), ControlMode.Slope);
+                            table.Rows.Add(index, desc, "NA","NA", V12_set_time, "NA");
+                        }
+                        else
+                        {
+                            string V12_buffer_time = FormatDisplay(parser.Decode(low, ControlMode.Slope), ControlMode.Slope);
+                            table.Rows.Add(index, desc, "NA", "NA", V12_buffer_time, "NA");
+                        }
+
+                    }
+                    break;
+
+                case 8:
+                    var v1_5 = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v1_5, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+
+                case 9:
+                    var v2_5 = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v2_5, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 10:
+                    {
+                        if (desc == "5V結束Duty")
+                        {
+                            string V5_end_duty = FormatDisplay(parser.Decode(low, ControlMode.NEW_F_PWM), pwmMode);
+                            table.Rows.Add(index, desc, "NA", V5_end_duty, "NA", "NA");
+                        }
+                        else
+                        {
+                            string V5_start_duty = FormatDisplay(parser.Decode(high, ControlMode.NEW_F_PWM), pwmMode);
+                            table.Rows.Add(index, desc, "NA", V5_start_duty, "NA", "NA");
+                        }
+
+                    }
+                    break;
+                case 11:
+                    var v1_3 = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v1_3, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+
+                case 12:
+                    var v2_3 = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v2_3, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 13:
+                    {
+                        if (desc == "3V結束Duty")
+                        {
+                            string V3_end_duty = FormatDisplay(parser.Decode(low, ControlMode.NEW_F_PWM), pwmMode);
+                            table.Rows.Add(index, desc, "NA", V3_end_duty, "NA", "NA");
+                        }
+                        else
+                        {
+                            string V3_start_duty = FormatDisplay(parser.Decode(high, ControlMode.NEW_F_PWM), pwmMode);
+                            table.Rows.Add(index, desc, "NA", V3_start_duty, "NA", "NA");
+                        }
+
+                    }
+                    break;
+                case 14:
+                    var v1_OTP = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v1_OTP, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+
+                case 15:
+                    var v2_OTP = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v2_OTP, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 16:
+                    var v3_OTP = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, v3_OTP, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 17:
+                    if (desc == "OTP結束Duty")
+                    {
+                        string OTP_end_duty = FormatDisplay(parser.Decode(low, ControlMode.NEW_F_PWM), pwmMode);
+                        table.Rows.Add(index, desc, "NA", OTP_end_duty, "NA", "NA");
+                    }
+                    else
+                    {
+                        string OTP_start_duty = FormatDisplay(parser.Decode(high, ControlMode.NEW_F_PWM), pwmMode);
+                        table.Rows.Add(index, desc, "NA", OTP_start_duty, "NA", "NA");
+                    }
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 18:
+                    var MOS_OTP = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, MOS_OTP, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 19:
+                    var TA_OTP = FormatDisplay(parser.FromHexWord(raw), voltageMode);
+                    table.Rows.Add(index, desc, TA_OTP, "NA", "NA", "NA");
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+                case 20:
+                    var OPP = FormatDisplay(parser.Decode(high, ControlMode.OPP_NEW), ControlMode.OPP_NEW);
+                    table.Rows.Add(index, desc, "NA", "NA", "NA", OPP);
+                    // V1_12V.Text = decimalValue + "V";
+                    break;
+            }
+
+            // table.Rows.Add(index, description, voltage, pwm, time, watt);
+
+
+
+
+
+
+
+        }
+
+
+
+        private void AddFanRow(
+    DataTable table,
+    FanDataParser parser,
+    int index,
+    string desc,
+    ControlMode voltageMode,
+    ControlMode pwmMode,
+    ControlMode timeMode,
+    ControlMode wattMode)
+        {
+            uint raw = parser.RawData[index];
+
+            ushort high = (ushort)(raw >> 16);
+            ushort low = (ushort)(raw & 0xFFFF);
+            switch (index)
+            {
+
+                case 3:
+                    string voltage = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                    string pwm = FormatDisplay(parser.Decode(high, pwmMode), pwmMode);
+                    table.Rows.Add(index, desc, voltage, pwm, "NA", "NA");
+                    break;
+                case 4:
+                    {
+                        if (desc == "12V負載第二點")
+                        {
+                            string V12_2 = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                            table.Rows.Add(index, desc, V12_2, "NA", "NA", "NA");
+                        }
+                        else
+                        {
+                            string V12_3 = FormatDisplay(parser.Decode(high, voltageMode), voltageMode);
+                            table.Rows.Add(index, desc, V12_3, "NA", "NA", "NA");
+                        }
+                    }
+                    break;
+                case 5:
+                    string V5_1 = FormatDisplay(parser.Decode(high, voltageMode), voltageMode);
+                    string PWM_12V_end = FormatDisplay(parser.Decode(low, pwmMode), pwmMode);
+                    table.Rows.Add(index, desc, V5_1, PWM_12V_end, "NA", "NA");
+                    break;
+                case 6:
+                    string PWM_5V_start = FormatDisplay(parser.Decode(low, pwmMode), pwmMode);
+                    table.Rows.Add(index, desc, 0, PWM_5V_start, "NA", "NA");
+                    break;
+                case 7:
+
+                    string PWM_5V_end = FormatDisplay(parser.Decode(high, pwmMode), pwmMode);
+                    string V5_2 = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                    table.Rows.Add(index, desc, V5_2, PWM_5V_end, "NA", "NA");
+                    break;
+
+                case 8:
+
+                    string PWM_3V_start = FormatDisplay(parser.Decode(high, pwmMode), pwmMode);
+                    string V3_1 = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                    table.Rows.Add(index, desc, V3_1, PWM_3V_start, "NA", "NA");
+                    break;
+
+                case 9:
+                    string V3_2 = FormatDisplay(parser.Decode(high, voltageMode), voltageMode);
+                    table.Rows.Add(index, desc, V3_2, "NA", "NA", "NA");
+                    break;
+                case 10:
+                    string PWM_3V_end = FormatDisplay(parser.Decode(low, pwmMode), pwmMode);
+                    table.Rows.Add(index, desc, "NA", PWM_3V_end, "NA", "NA");
+                    break;
+                case 11:
+                    if (desc == "低溫判斷點2")
+                    {
+                        string LT_2 = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, LT_2, "NA", "NA", "NA");
+                    }
+                    else
+                    {
+                        string LT_1 = FormatDisplay(parser.Decode(high, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, LT_1, "NA", "NA", "NA");
+                    }
+
+                    break;
+                case 12:
+                    if (desc == "低溫判斷點3")
+                    {
+                        string LT_3 = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, LT_3, "NA", "NA", "NA");
+                    }
+                    else
+                    {
+                        string OTP_1 = FormatDisplay(parser.Decode(high, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, OTP_1, "NA", "NA", "NA");
+                    }
+
+                   break;
+                case 13:
+                    if (desc == "OTP第二點")
+                    {
+                        string OTP_2 = FormatDisplay(parser.Decode(high, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, OTP_2, "NA", "NA", "NA");
+                    }
+                    else
+                    {
+                        string OTP_3 = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, OTP_3, "NA", "NA", "NA");
+                    }
+
+                    break;
+                case 14:
+                    if (desc == "最大PWM轉速")
+                    {
+                        end_pwm_12v = (uint)parser.Decode(high, pwmMode);
+                        string MAX_PWM = FormatDisplay(parser.Decode(high, pwmMode), pwmMode);
+                        table.Rows.Add(index, desc, "NA", MAX_PWM, "NA", "NA");
+                    }
+                    else
+                    {
+                        string OTP_PWM = FormatDisplay(parser.Decode(low, pwmMode), pwmMode);
+                        table.Rows.Add(index, desc, "NA", OTP_PWM, "NA", "NA");
+                    }
+
+                    break;
+                case 15:
+                    if (desc == "最低PWM轉速")
+                    {
+                        start_pwm_12v = (uint)parser.Decode(low, pwmMode);
+                        string MIN_PWM = FormatDisplay(parser.Decode(low, pwmMode), pwmMode);
+                        table.Rows.Add(index, desc, "NA", MIN_PWM, "NA", "NA");
+
+
+                    }
+                    else
+                    {
+                        var Slope_time = (uint)parser.Decode(high, ControlMode.Slope);
+                        double percent = (double)(end_pwm_12v - start_pwm_12v) / 100.0;
+                        double buffer_timer_value = percent * Slope_time * 1920 / 1000.0;
+                        var temp_buffer_timer = (int)Math.Round(buffer_timer_value, MidpointRounding.AwayFromZero);
+                        string FAN_TIME = FormatDisplay(temp_buffer_timer, ControlMode.Slope);
+                        table.Rows.Add(index, desc, "NA", "NA", FAN_TIME, "NA");
+                    }
+                    break;
+
+                case 17:
+                    string buf_time = FormatDisplay(parser.Decode(low, ControlMode.BufferTime), ControlMode.BufferTime);
+                    table.Rows.Add(index, desc, "NA", "NA", buf_time, "NA");
+                    break;
+                case 18:
+                    if (desc == "SR_OTP")
+                    {
+                        string SR_OTP = FormatDisplay(parser.Decode(high, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, SR_OTP, "NA", "NA", "NA");
+                    }
+                    else
+                    {
+                        string OTP_PWM = FormatDisplay(parser.Decode(low, voltageMode), voltageMode);
+                        table.Rows.Add(index, desc, OTP_PWM, "NA", "NA", "NA");
+                    }
+
+                    break;
+                case 19:
+                    string OPP = FormatDisplay(parser.Decode(low, ControlMode.OPP_Watter), ControlMode.OPP_Watter);
+                    table.Rows.Add(index, desc, "NA", "NA", "NA", OPP);
+                    break;
+            }
+
+            // table.Rows.Add(index, description, voltage, pwm, time, watt);
+
+
+
+
+
+
+
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -826,63 +1038,6 @@ namespace JLink_Find_Emulators
             return new string(swapped);
         }
 
-        double Voltage_read(U32 decimalValue, int shift_on_off, ControlMode mode)
-        {
-            if(shift_on_off==1)
-            {
-               decimalValue= decimalValue >> 16;
-            }
-            else
-            {
-                decimalValue &= 0x0000ffff;
-            }
-            //string hexStr = SwapHexBytes(line.Substring(startIndex, 4));
-            //int decimalValue = Convert.ToInt32(hexStr, 16);
-
-            switch (mode)
-            {
-                case ControlMode.Voltage:
-                    return decimalValue / 1000.0;
-                    break;
-                case ControlMode.PWM:
-                    double result = Math.Round((double)decimalValue / (double)divisor * 100, 1);
-                    return result;
-                    break;
-                case ControlMode.Slope://difficult
-
-                    // return decimalValue / 1000.0;
-                    return decimalValue;
-                    break;
-                case ControlMode.BufferTime:
-                    return decimalValue / 1000.0;
-                    break;
-
-                case ControlMode.OPP_Watter:
-                    return decimalValue;
-                    break;
-
-                default:
-                    return 0;
-                    break;
-            }
-
-        }
-
-        //static float FromHexWord(string hexWord)
-        //{
-        //    if (hexWord.Length != 8)
-        //        throw new ArgumentException("Hex word must be exactly 8 characters.");
-
-        //    uint u = Convert.ToUInt32(hexWord, 16);
-
-        //    // 換 endian（MCU 給的是小端，要轉成 IEEE754 順序）
-        //    u = BinaryPrimitives.ReverseEndianness(u);
-
-        //    // 使用 BitConverter 轉成 float（所有 .NET 都支援）
-        //    byte[] bytes = BitConverter.GetBytes(u);
-
-        //    return BitConverter.ToSingle(bytes, 0);
-        //}
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -900,6 +1055,16 @@ namespace JLink_Find_Emulators
         }
 
         private void NEW_FONT_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void V1_OTP_LT_TextChanged(object sender, EventArgs e)
         {
 
         }
