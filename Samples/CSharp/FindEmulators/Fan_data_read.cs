@@ -41,7 +41,7 @@ namespace JLink_Find_Emulators
         //    return (Decode(high, highMode), Decode(low, lowMode));
         //}
 
-        public double Decode(uint raw, ControlMode mode)
+        public double Decode(double raw, ControlMode mode)
         {
           
             //if (shift == 1)
@@ -64,8 +64,12 @@ namespace JLink_Find_Emulators
                 case ControlMode.BufferTime:
                     return raw / 1000.0;
                 case ControlMode.NEW_F_PWM:
+                      return raw;
                 case ControlMode.OPP_NEW:
-                    return raw;
+
+
+                    return raw/100;
+                    //return raw;
 
 
                 default:
@@ -96,7 +100,7 @@ namespace JLink_Find_Emulators
                 case ControlMode.OPP_Watter:
                     return value.ToString();
                 case ControlMode.OPP_NEW: 
-                    return value.ToString("0.#")+"倍";
+                    return value.ToString("0.###")+"倍";
 
                 default:
                     return "-";

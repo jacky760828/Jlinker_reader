@@ -37,8 +37,6 @@
             this.MCU_lab = new System.Windows.Forms.Label();
             this.Log_text = new System.Windows.Forms.RichTextBox();
             this.burn_button = new System.Windows.Forms.Button();
-            this.TxtAddr = new System.Windows.Forms.TextBox();
-            this.fw_v = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,20 +46,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.V2_OTP_LT = new System.Windows.Forms.TextBox();
-            this.V1_OTP_LT = new System.Windows.Forms.TextBox();
             this.NEW_FONT = new System.Windows.Forms.CheckBox();
             this.OLD_FONT = new System.Windows.Forms.CheckBox();
-            this.V3_OTP_LT = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.fandataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.TxtAddr = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -71,7 +62,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(3, 32);
+            this.button2.Location = new System.Drawing.Point(219, 332);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(103, 52);
@@ -84,7 +75,7 @@
             // 
             this.status_lab.AutoSize = true;
             this.status_lab.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.status_lab.Location = new System.Drawing.Point(130, 39);
+            this.status_lab.Location = new System.Drawing.Point(360, 341);
             this.status_lab.Name = "status_lab";
             this.status_lab.Size = new System.Drawing.Size(86, 31);
             this.status_lab.TabIndex = 3;
@@ -93,7 +84,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(635, 78);
+            this.button1.Location = new System.Drawing.Point(424, 672);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(104, 50);
             this.button1.TabIndex = 4;
@@ -103,15 +94,15 @@
             // 
             // tb_app_bin_path
             // 
-            this.tb_app_bin_path.Location = new System.Drawing.Point(12, 91);
+            this.tb_app_bin_path.Location = new System.Drawing.Point(518, 685);
             this.tb_app_bin_path.Name = "tb_app_bin_path";
-            this.tb_app_bin_path.Size = new System.Drawing.Size(602, 29);
+            this.tb_app_bin_path.Size = new System.Drawing.Size(520, 29);
             this.tb_app_bin_path.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(529, 49);
+            this.label1.Location = new System.Drawing.Point(879, 351);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 18);
             this.label1.TabIndex = 6;
@@ -128,48 +119,30 @@
             // MCU_lab
             // 
             this.MCU_lab.AutoSize = true;
-            this.MCU_lab.Location = new System.Drawing.Point(601, 49);
+            this.MCU_lab.Location = new System.Drawing.Point(941, 351);
             this.MCU_lab.Name = "MCU_lab";
             this.MCU_lab.Size = new System.Drawing.Size(97, 18);
             this.MCU_lab.TabIndex = 8;
             this.MCU_lab.Text = "M031FB0AE";
-            this.MCU_lab.Click += new System.EventHandler(this.MCU_lab_Click);
+            //this.MCU_lab.Click += new System.EventHandler(this.MCU_lab_Click);
             // 
             // Log_text
             // 
             this.Log_text.Location = new System.Drawing.Point(0, 6);
             this.Log_text.Name = "Log_text";
-            this.Log_text.Size = new System.Drawing.Size(903, 262);
+            this.Log_text.Size = new System.Drawing.Size(1021, 262);
             this.Log_text.TabIndex = 9;
             this.Log_text.Text = "";
             // 
             // burn_button
             // 
-            this.burn_button.Location = new System.Drawing.Point(519, 147);
+            this.burn_button.Location = new System.Drawing.Point(1067, 666);
             this.burn_button.Name = "burn_button";
             this.burn_button.Size = new System.Drawing.Size(109, 56);
             this.burn_button.TabIndex = 10;
             this.burn_button.Text = "燒錄";
             this.burn_button.UseVisualStyleBackColor = true;
             this.burn_button.Click += new System.EventHandler(this.burn_button_Click);
-            // 
-            // TxtAddr
-            // 
-            this.TxtAddr.Location = new System.Drawing.Point(158, 147);
-            this.TxtAddr.Name = "TxtAddr";
-            this.TxtAddr.Size = new System.Drawing.Size(216, 29);
-            this.TxtAddr.TabIndex = 11;
-            this.TxtAddr.Text = "20000000";
-            // 
-            // fw_v
-            // 
-            this.fw_v.Location = new System.Drawing.Point(-4, 157);
-            this.fw_v.Name = "fw_v";
-            this.fw_v.Size = new System.Drawing.Size(127, 37);
-            this.fw_v.TabIndex = 12;
-            this.fw_v.Text = "產品規格";
-            this.fw_v.UseVisualStyleBackColor = true;
-            this.fw_v.Click += new System.EventHandler(this.fw_v_Click);
             // 
             // label2
             // 
@@ -197,11 +170,11 @@
             this.label4.Size = new System.Drawing.Size(38, 18);
             this.label4.TabIndex = 17;
             this.label4.Text = "year";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+           //this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1, 263);
+            this.button3.Location = new System.Drawing.Point(16, 656);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(127, 34);
             this.button3.TabIndex = 18;
@@ -225,7 +198,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(134, 253);
+            this.groupBox1.Location = new System.Drawing.Point(158, 656);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(260, 88);
             this.groupBox1.TabIndex = 20;
@@ -254,110 +227,42 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(15, 309);
+            this.label7.Location = new System.Drawing.Point(35, 704);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(108, 18);
             this.label7.TabIndex = 21;
             this.label7.Text = "年/月日/時分";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(427, 253);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 18);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "模組規格:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(451, 297);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(32, 18);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "0W";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
-            // V2_OTP_LT
-            // 
-            this.V2_OTP_LT.Location = new System.Drawing.Point(1360, 481);
-            this.V2_OTP_LT.Name = "V2_OTP_LT";
-            this.V2_OTP_LT.Size = new System.Drawing.Size(100, 29);
-            this.V2_OTP_LT.TabIndex = 13;
-            // 
-            // V1_OTP_LT
-            // 
-            this.V1_OTP_LT.Location = new System.Drawing.Point(1360, 427);
-            this.V1_OTP_LT.Name = "V1_OTP_LT";
-            this.V1_OTP_LT.Size = new System.Drawing.Size(100, 29);
-            this.V1_OTP_LT.TabIndex = 11;
-            this.V1_OTP_LT.TextChanged += new System.EventHandler(this.V1_OTP_LT_TextChanged);
-            // 
             // NEW_FONT
             // 
             this.NEW_FONT.AutoSize = true;
-            this.NEW_FONT.Location = new System.Drawing.Point(579, 305);
+            this.NEW_FONT.Location = new System.Drawing.Point(12, 319);
             this.NEW_FONT.Name = "NEW_FONT";
             this.NEW_FONT.Size = new System.Drawing.Size(88, 22);
             this.NEW_FONT.TabIndex = 25;
             this.NEW_FONT.Text = "新格式";
             this.NEW_FONT.UseVisualStyleBackColor = true;
-            this.NEW_FONT.CheckedChanged += new System.EventHandler(this.NEW_FONT_CheckedChanged);
+            //this.NEW_FONT.CheckedChanged += new System.EventHandler(this.NEW_FONT_CheckedChanged);
             // 
             // OLD_FONT
             // 
             this.OLD_FONT.AutoSize = true;
-            this.OLD_FONT.Location = new System.Drawing.Point(687, 305);
+            this.OLD_FONT.Location = new System.Drawing.Point(106, 319);
             this.OLD_FONT.Name = "OLD_FONT";
             this.OLD_FONT.Size = new System.Drawing.Size(88, 22);
             this.OLD_FONT.TabIndex = 26;
             this.OLD_FONT.Text = "舊格式";
             this.OLD_FONT.UseVisualStyleBackColor = true;
             // 
-            // V3_OTP_LT
-            // 
-            this.V3_OTP_LT.Location = new System.Drawing.Point(1360, 544);
-            this.V3_OTP_LT.Name = "V3_OTP_LT";
-            this.V3_OTP_LT.Size = new System.Drawing.Size(100, 29);
-            this.V3_OTP_LT.TabIndex = 20;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(1220, 430);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(123, 18);
-            this.label28.TabIndex = 20;
-            this.label28.Text = "低溫判斷點V1:";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(1220, 492);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(123, 18);
-            this.label29.TabIndex = 27;
-            this.label29.Text = "低溫判斷點V2:";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(1220, 547);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(123, 18);
-            this.label30.TabIndex = 28;
-            this.label30.Text = "低溫判斷點V3:";
-            // 
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(52, 358);
+            this.tabControl1.Location = new System.Drawing.Point(12, 372);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1092, 303);
+            this.tabControl1.Size = new System.Drawing.Size(1092, 278);
             this.tabControl1.TabIndex = 29;
             // 
             // tabPage1
@@ -366,7 +271,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 31);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1084, 268);
+            this.tabPage1.Size = new System.Drawing.Size(1084, 243);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "機種風扇參數";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -374,13 +279,13 @@
             // fandataGridView
             // 
             this.fandataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.fandataGridView.Location = new System.Drawing.Point(0, 21);
+            this.fandataGridView.Location = new System.Drawing.Point(0, 18);
             this.fandataGridView.Name = "fandataGridView";
             this.fandataGridView.RowHeadersWidth = 62;
             this.fandataGridView.RowTemplate.Height = 31;
-            this.fandataGridView.Size = new System.Drawing.Size(1081, 332);
+            this.fandataGridView.Size = new System.Drawing.Size(1088, 247);
             this.fandataGridView.TabIndex = 0;
-            this.fandataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+           // this.fandataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tabPage2
             // 
@@ -388,32 +293,32 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(911, 268);
+            this.tabPage2.Size = new System.Drawing.Size(1084, 243);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Jlink-log";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // TxtAddr
+            // 
+            this.TxtAddr.Location = new System.Drawing.Point(646, 346);
+            this.TxtAddr.Name = "TxtAddr";
+            this.TxtAddr.Size = new System.Drawing.Size(216, 29);
+            this.TxtAddr.TabIndex = 11;
+            this.TxtAddr.Text = "20000000";
+            this.TxtAddr.Visible = false;
             // 
             // FindEmulatorsGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1509, 746);
+            this.ClientSize = new System.Drawing.Size(1613, 795);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.label30);
-            this.Controls.Add(this.label29);
-            this.Controls.Add(this.label28);
-            this.Controls.Add(this.V3_OTP_LT);
-            this.Controls.Add(this.V2_OTP_LT);
             this.Controls.Add(this.OLD_FONT);
             this.Controls.Add(this.NEW_FONT);
-            this.Controls.Add(this.V1_OTP_LT);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.product);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.fw_v);
             this.Controls.Add(this.TxtAddr);
             this.Controls.Add(this.burn_button);
             this.Controls.Add(this.MCU_lab);
@@ -448,8 +353,6 @@
         private System.Windows.Forms.Label MCU_lab;
         private System.Windows.Forms.RichTextBox Log_text;
         private System.Windows.Forms.Button burn_button;
-        private System.Windows.Forms.TextBox TxtAddr;
-        private System.Windows.Forms.Button fw_v;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -459,20 +362,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox NEW_FONT;
         private System.Windows.Forms.CheckBox OLD_FONT;
-        private System.Windows.Forms.TextBox V2_OTP_LT;
-        private System.Windows.Forms.TextBox V1_OTP_LT;
-        private System.Windows.Forms.TextBox V3_OTP_LT;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView fandataGridView;
+        private System.Windows.Forms.TextBox TxtAddr;
     }
 }
 
