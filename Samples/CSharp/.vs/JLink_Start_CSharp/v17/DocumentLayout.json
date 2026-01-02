@@ -1,40 +1,40 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\",
+  "WorkspaceRootPath": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|d:\\jlink_test\\test2\\samples\\csharp\\findemulators\\findemulatorsgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|d:\\jlink_test\\test2\\jlinker_reader\\samples\\csharp\\findemulators\\findemulatorsgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:findemulators\\findemulatorsgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Samples\\CSharp\\shared\\jlinksdk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\shared\\jlinksdk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:shared\\jlinksdk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Samples\\CSharp\\findemulators\\findemulatorsgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\findemulators\\findemulatorsgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:findemulators\\findemulatorsgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Samples\\CSharp\\findemulators\\findemulators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\findemulators\\findemulators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:findemulators\\findemulators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Samples\\CSharp\\findemulators\\fan_data_read.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\findemulators\\fan_data_read.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:findemulators\\fan_data_read.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Samples\\CSharp\\findemulators\\findemulatorsgui.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\findemulators\\findemulatorsgui.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:findemulators\\findemulatorsgui.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Samples\\CSharp\\findemulators\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\findemulators\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:findemulators\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|JLink_Find_Emulators_CSharp||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Samples\\CSharp\\findemulators\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\findemulators\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{9F5AEF43-BA08-49B3-AFB0-6DD5BDED8DB5}|FindEmulators\\JLink_Find_Emulators_CSharp.csproj|solutionrelative:findemulators\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
@@ -59,11 +59,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "FindEmulatorsGUI.cs",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs",
               "RelativeDocumentMoniker": "FindEmulators\\FindEmulatorsGUI.cs",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs",
               "RelativeToolTip": "FindEmulators\\FindEmulatorsGUI.cs",
-              "ViewState": "AgIAANMBAAAAAAAAAAAYwMcBAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAKMBAAAAAAAAAAAYwMcBAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-23T01:13:09.883Z",
               "EditorCaption": ""
@@ -72,10 +72,10 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "FindEmulatorsGUI.cs [\u8A2D\u8A08]",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs",
               "RelativeDocumentMoniker": "FindEmulators\\FindEmulatorsGUI.cs",
               "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs [\u8A2D\u8A08]",
-              "RelativeToolTip": "FindEmulators\\FindEmulatorsGUI.cs [\u8A2D\u8A08]",
+              "RelativeToolTip": "..\\..\\..\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.cs [\u8A2D\u8A08]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-19T08:27:02.405Z"
             },
@@ -83,9 +83,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "FindEmulators.cs",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulators.cs",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\FindEmulators.cs",
               "RelativeDocumentMoniker": "FindEmulators\\FindEmulators.cs",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulators.cs",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\FindEmulators.cs",
               "RelativeToolTip": "FindEmulators\\FindEmulators.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -95,9 +95,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Fan_data_read.cs",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\Fan_data_read.cs",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\Fan_data_read.cs",
               "RelativeDocumentMoniker": "FindEmulators\\Fan_data_read.cs",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\Fan_data_read.cs",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\Fan_data_read.cs",
               "RelativeToolTip": "FindEmulators\\Fan_data_read.cs",
               "ViewState": "AgIAACYAAAAAAAAAAAAmwDUAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -107,22 +107,21 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "JLinkSDK.cs",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\Shared\\JLinkSDK.cs",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\Shared\\JLinkSDK.cs",
               "RelativeDocumentMoniker": "Shared\\JLinkSDK.cs",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\Shared\\JLinkSDK.cs",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\Shared\\JLinkSDK.cs",
               "RelativeToolTip": "Shared\\JLinkSDK.cs",
               "ViewState": "AgIAAHACAAAAAAAAAAAIwIICAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-02T02:27:52.868Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-02T02:27:52.868Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "FindEmulatorsGUI.Designer.cs",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.Designer.cs",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.Designer.cs",
               "RelativeDocumentMoniker": "FindEmulators\\FindEmulatorsGUI.Designer.cs",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.Designer.cs",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\FindEmulatorsGUI.Designer.cs",
               "RelativeToolTip": "FindEmulators\\FindEmulatorsGUI.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAIiCwLMBAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -132,9 +131,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "app.config",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\app.config",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\app.config",
               "RelativeDocumentMoniker": "FindEmulators\\app.config",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\app.config",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\app.config",
               "RelativeToolTip": "FindEmulators\\app.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
@@ -144,9 +143,9 @@
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "JLink_Find_Emulators_CSharp",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\JLink_Find_Emulators_CSharp.csproj",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\JLink_Find_Emulators_CSharp.csproj",
               "RelativeDocumentMoniker": "FindEmulators\\JLink_Find_Emulators_CSharp.csproj",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\JLink_Find_Emulators_CSharp.csproj",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\JLink_Find_Emulators_CSharp.csproj",
               "RelativeToolTip": "FindEmulators\\JLink_Find_Emulators_CSharp.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-12-22T00:42:28.661Z"
@@ -155,9 +154,9 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "packages.config",
-              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\packages.config",
+              "DocumentMoniker": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\packages.config",
               "RelativeDocumentMoniker": "FindEmulators\\packages.config",
-              "ToolTip": "D:\\jlink_test\\TEST2\\Samples\\CSharp\\FindEmulators\\packages.config",
+              "ToolTip": "D:\\jlink_test\\TEST2\\Jlinker_reader\\Samples\\CSharp\\FindEmulators\\packages.config",
               "RelativeToolTip": "FindEmulators\\packages.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
