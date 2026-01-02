@@ -1,2 +1,4 @@
 用JLINK和HAX檔讀取風扇參數
-![遊戲畫面](image/JLINKTEST.png)
+![測試畫面]<p align="center">
+  <img src="images/JLINKTEST.png" width="500">
+</p>
